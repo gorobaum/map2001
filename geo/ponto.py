@@ -4,3 +4,9 @@ class Ponto:
 
     def __add__(self, p):
         return Ponto(self.x + p.x, self.y + p.y, self.z + p.z)
+
+    def __repr__(self):
+        return "(" + str(self.x) + ", " + str(self.y) + ", " + str(self.z) + ")"
+
+    def __str__(self):
+        return self.__repr__()
