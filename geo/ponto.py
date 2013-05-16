@@ -6,7 +6,7 @@ class Ponto:
         return Ponto(self.x + p.x, self.y + p.y, self.z + p.z)
 
     def __repr__(self):
-        return "(" + str(self.x) + ", " + str(self.y) + ", " + str(self.z) + ")"
+        return "(" + ("%.2f" % self.x) + ", " + ("%.2f" % self.y) + ", " + ("%.2f" % self.z) + ")"
 
     def __str__(self):
         return self.__repr__()
