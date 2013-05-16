@@ -21,4 +21,11 @@ class Vetor(Ponto):
 
     def normalize(self):
         l = self.length()
-        return Vetor(self.x / l, self.y / l, self.z / l)
+        return self/l
+
+    def __mul__(self, scalar):
+        scalar = float(scalar)
+        return Vetor(self.x * scalar, self.y * scalar, self.z * scalar)
+
+    def __div__(self, scalar):
+        return self.__mul__(1.0/scalar)
