@@ -1,4 +1,5 @@
 from geo.ponto import Ponto as P
+import config.size as Tamanho
 
 class Base:
     def __init__(self, *args):
@@ -13,7 +14,7 @@ class Base:
         self.pontos = points
 
     def initByCenter(self, center):
-        self.initCenterAux(center, 5)
+        self.initCenterAux(center, Tamanho.coluna/2)
 
     def initCenterAux(self, center, larg):
         lista = []
