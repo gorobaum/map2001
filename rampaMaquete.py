@@ -12,15 +12,24 @@ comprimento = 10
 difAlt = 5
 
 rampas = []
-rampas.append(Rampa(Ponto(-2 * comprimento, ycomum, 50), Ponto(- comprimento, ycomum, 40), rLarg))
-rampas.append(Rampa(Ponto(- comprimento, ycomum, 35),    Ponto(0, ycomum, 25), rLarg))
-rampas.append(Rampa(Ponto(0, ycomum, 20),                Ponto(comprimento, ycomum, 30), rLarg))
-rampas.append(Rampa(Ponto(comprimento, ycomum, 25),       Ponto(2 * comprimento, ycomum, 15), rLarg))
+rampas.append(Rampa(Ponto(-2 * comprimento, ycomum, 30), Ponto(- comprimento, ycomum, 25), rLarg))
+rampas.append(Rampa(Ponto(- comprimento, ycomum, 23),    Ponto(0, ycomum, 20), rLarg))
+rampas.append(Rampa(Ponto(0, ycomum, 18),                Ponto(comprimento, ycomum, 23), rLarg))
+rampas.append(Rampa(Ponto(comprimento, ycomum, 21),       Ponto(2 * comprimento, ycomum, 17), rLarg))
 
+alturas = []
+alturas.append( [30, 30, 26, 26] )
+alturas.append( [25, 25, 25, 25] )
+alturas.append( [24, 24, 22, 22] )
+alturas.append( [21, 21, 19, 19] )
+
+
+i = 0
 for r in rampas:
     print "Proxima Rampa..."
     print r.pontos
-    print " ", Operacoes.entortaRampa(r.pontos, [60, 60, 60, 60])
+    print " ", Operacoes.entortaRampa(r.pontos, alturas[i])
+    i += 1
     
 
 
