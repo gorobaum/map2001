@@ -9,7 +9,7 @@ class Rampa:
             self.initAux(args[0], args[1], args[2])
 
     def initByPoints(self, points):
-        self.pontos = points
+        self.pontosAparencia = points
 
     def initAux(self, p1, p2, larg):
         lista = []
@@ -18,3 +18,6 @@ class Rampa:
         lista.append(p2 + P(0, larg, 0))
         lista.append(p2)
         self.initByPoints(lista)
+
+    def setPontosReal(self, listap):
+        self.pontosReal = listap

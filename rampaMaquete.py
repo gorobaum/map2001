@@ -3,6 +3,7 @@ from modelo.base import Base
 from modelo.rampa import Rampa
 import geo.operacoes as Operacoes
 import config.size as Tamanho
+from config.observador import Observador
 import math
 
 ycomum = 10
@@ -25,11 +26,15 @@ alturas.append( [21, 21, 19, 19] )
 
 
 i = 0
+print "Posicao do observador: %s" % Observador.posicao
+print ""
 for r in rampas:
     print "Proxima Rampa..."
-    print r.pontos
-    print " ", Operacoes.entortaRampa(r.pontos, alturas[i])
+    print "\tPontos Apar: %s" % (r.pontosAparencia)
+    r.setPontosReal(Operacoes.entortaRampaPorZ(r.pontosAparencia, alturas[i]))
+    print "\tPontos Real: %s" % (r.pontosReal)
     i += 1
+    print ""
     
 
 
