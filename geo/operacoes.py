@@ -1,3 +1,4 @@
+from __future__ import division
 from geo.ponto import Ponto
 from geo.vetor import Vetor
 from config.observador import Observador
@@ -47,20 +48,25 @@ def anguloEntre(base, topo, p3):
     frac = (b ** 2 + c**2 - a**2) / (2*b*c)
     return math.acos(frac)
 
-def alturaDasBases(tamBase, listaAlturasReais):
-    m = 0;
-    if (listaAlturasReais[0] == listaAlturasReais[2]):
-        return listaAlturasReais[0]
-    elif (listaAlturasReais[0] < listaAlturasReais[2]):
-        m = 1
-    else:
-        m = -1
-    tamLadoBase = tamBase/2
-    tamLadoRampa = m*(listaAlturasReais[2] - listaAlturasReais[0])
-    posicoes = []
-    posicoes.append(tamLadoRampa/2 - tamLadoBase)
-    posicoes.append(tamLadoRampa/2 + tamLadoBase)
-    alturaRealDoTopoDaBase = []
-    alturaRealDoTopoDaBase.append(posicoes[0]*100/tamLadoRampa)
-    alturaRealDoTopoDaBase.append(posicoes[1]*100/tamLadoRampa)
-    return alturaRealDoTopoDaBase
+def achaBaseDaColuna(listaPontosAparentes, tamBase):
+    meiox = (listaPontosAparentes[3].x - listaPontosAparentes[0].x)/2
+    meioy = (listaPontosAparentes[1].y - listaPontosAparentes[0].y) / 2
+    distCentroBase = tamBase/2
+    centroDaRampa = Ponto(listaPontosAparentes[0].x + meiox, listaPontosAparentes[0].y + meioy, 0)
+    pontosDaBase = []
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y - distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y - distCentroBase, 0))
+    return pontosDaBase
+
+def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
+    razao = (listaPontosAparentes[3].z - listaPontosAparentes[0].z) / (listaPontosAparentes[3].x - listaPontosAparentes[0].x)
+    listaTopo = []
+    i = 0
+    for p in listaBase:
+        alturaTopo = (p.x - listaPontosAparentes[0].x)*razao + listaPontosAparentes[0].z
+        listaTopo.append(Ponto(p.x, p.y, alturaTopo))
+        i += 1
+
+    return listaTopo

@@ -11,7 +11,7 @@ rLarg = 5
 
 comprimento = 10
 difAlt = 5
-tamBase = 3
+tamBaseColuna = 4
 
 rampas = []
 rampas.append(Rampa(Ponto(-2 * comprimento, ycomum, 30), Ponto(- comprimento, ycomum, 25), rLarg))
@@ -37,10 +37,37 @@ for r in rampas:
     i += 1
     print ""
     
-alturasDaBase = []
-j = 0
+basesColunas = []
+i = 0
+print "Agora calculando a posicao das bases das Colunas..."
+print ""
 for r in rampas:
-	alturasDaBase[j] = Operacoes.alturasDaBase(tamBase, r.pontosReal)
-	j += 1
+    print "Proxima Coluna..."
+    basesColunas.append(Operacoes.achaBaseDaColuna(r.pontosAparencia, tamBaseColuna))
+    print "\tPontos da Base: %s" % (basesColunas[i])
+    i += 1
+    print ""
 
+topoAparenteColunas = []
+i = 0
+print "Agora calculando a posicao do topo real das Colunas..."
+print ""
+for r in rampas:
+	print "Proxima Coluna..."	
+	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosAparencia, basesColunas[i]))
+	print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
+	i += 1
+	print ""
 
+rampasTopoColuna = []
+i = 0
+print "Calculando o topo real das Colunas..."
+print ""
+for r in rampas:
+	print "Proxima Coluna..."
+	rampaTopo = Rampa(topoAparenteColunas[i][0], topoAparenteColunas[i][3], tamBaseColuna)
+	rampasTopoColuna.append(Operacoes.entortaRampaPorZ(rampaTopo.pontosAparencia, alturas[i]))
+	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosAparencia, basesColunas[i]))
+	print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
+	i += 1
+	print ""
