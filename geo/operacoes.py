@@ -70,3 +70,14 @@ def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
         i += 1
 
     return listaTopo
+
+def arrumaColuna(listaPontosAparentes, razao):
+    i = 0
+    retL = []
+    for p in listaPontosAparentes:
+        v = Vetor(Observador.posicao, p)
+        print "RAZAO = %s" % razao
+        novoV = v * razao
+        novoPonto = p + v
+        retL.append(novoPonto)
+    return retL

@@ -66,8 +66,7 @@ print ""
 for r in rampas:
 	print "Proxima Coluna..."
 	rampaTopo = Rampa(topoAparenteColunas[i][0], topoAparenteColunas[i][3], tamBaseColuna)
-	rampasTopoColuna.append(Operacoes.entortaRampaPorZ(rampaTopo.pontosAparencia, alturas[i]))
-	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosAparencia, basesColunas[i]))
-	print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
+	rampasTopoColuna.append(Operacoes.arrumaColuna(rampaTopo.pontosAparencia, razao))
+	print "\tPontos do Topo Real: %s" % (rampasTopoColuna[i])
 	i += 1
 	print ""
