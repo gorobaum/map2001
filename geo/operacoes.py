@@ -46,3 +46,21 @@ def anguloEntre(base, topo, p3):
 
     frac = (b ** 2 + c**2 - a**2) / (2*b*c)
     return math.acos(frac)
+
+def alturaDasBases(tamBase, listaAlturasReais):
+    m = 0;
+    if (listaAlturasReais[0] == listaAlturasReais[2]):
+        return listaAlturasReais[0]
+    elif (listaAlturasReais[0] < listaAlturasReais[2]):
+        m = 1
+    else:
+        m = -1
+    tamLadoBase = tamBase/2
+    tamLadoRampa = m*(listaAlturasReais[2] - listaAlturasReais[0])
+    posicoes = []
+    posicoes.append(tamLadoRampa/2 - tamLadoBase)
+    posicoes.append(tamLadoRampa/2 + tamLadoBase)
+    alturaRealDoTopoDaBase = []
+    alturaRealDoTopoDaBase.append(posicoes[0]*100/tamLadoRampa)
+    alturaRealDoTopoDaBase.append(posicoes[1]*100/tamLadoRampa)
+    return alturaRealDoTopoDaBase

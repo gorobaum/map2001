@@ -11,6 +11,7 @@ rLarg = 5
 
 comprimento = 10
 difAlt = 5
+tamBase = 3
 
 rampas = []
 rampas.append(Rampa(Ponto(-2 * comprimento, ycomum, 30), Ponto(- comprimento, ycomum, 25), rLarg))
@@ -36,5 +37,10 @@ for r in rampas:
     i += 1
     print ""
     
+alturasDaBase = []
+j = 0
+for r in rampas:
+	alturasDaBase[j] = Operacoes.alturasDaBase(tamBase, r.pontosReal)
+	j += 1
 
 
