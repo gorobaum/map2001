@@ -30,7 +30,6 @@ class Ponto:
         razao = (p.z - self.z ) / (p.x - self.x)
         return (x - self.x)*razao + self.z
 
-    def linearInterpolationYZ(self, p, y):
-        razao = (p.z - self.z ) / (p.y - self.y)
-        return (y - self.y)*razao + self.z   
-
+    def linearInterpolationYZ(self, p, x):
+        razao = (x - self.x ) / (p.x - self.x)
+        return (p.y - self.y)*razao + self.y
