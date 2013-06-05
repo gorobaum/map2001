@@ -10,6 +10,13 @@ class Ponto:
     def __sub__(self, p):
         return Ponto(self.x - p.x, self.y - p.y, self.z - p.z)
 
+    def __mul__(self, scalar):
+        return Ponto(self.x * scalar, self.y * scalar, self.z * scalar)
+    
+    def __div__(self, scalar):
+        val = 1.0 / scalar
+        return self.__mul__(val)
+
     def __repr__(self):
         return "(" + ("%.2f" % self.x) + ", " + ("%.2f" % self.y) + ", " + ("%.2f" % self.z) + ")"
 
