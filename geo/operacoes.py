@@ -67,7 +67,7 @@ def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
     listaTopo = []
     i = 0
     for p in listaBase:
-        alturaTopo = listaPontosAparentes[i%2].linearInterpolationXZ(listaPontosAparentes[i%2+2], p.x)
+        alturaTopo = listaPontosAparentes[i%2].linearInterpolationYZ(listaPontosAparentes[i%2+2], p.y)
         listaTopo.append(Ponto(p.x, p.y, alturaTopo))
         i += 1
 
