@@ -31,9 +31,5 @@ class Ponto:
         return (x - self.x)*razao + self.z
 
     def linearInterpolationYZ(self, p, x):
-        print "SELF = %s" % self
-        print "P = %s" % p
-        print "x = %s" % x
         razao = (x - self.x) / (p.x - self.x)
-        print "RAZAO = %s" % razao
         return (p.y - self.y)*razao + self.y 

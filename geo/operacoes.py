@@ -85,8 +85,8 @@ def achaAlturaAparenteDaColuna(pontosF, listaBase):
 def arrumaColuna(pontosR):
     meiox = (pontosR[0].x - pontosR[2].x) / 2
     meioz = (pontosR[0].z - pontosR[2].z) / 2
-    meioYExato = pontosR[0].linearInterpolationYZ(pontosR[2], pontosR[0].x - meiox)
-    print "MEIOS = [%s, %s, %s]" % (meiox, meioYExato, meioz)
-    centroDaRampa = Ponto(pontosR[0].x - meiox, meioYExato, pontosR[0].z - meioz)
-    print "Posicao real da rampa %s" %(pontosR)
+    meioy = (pontosR[0].y - pontosR[2].y) / 2
+    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
+    centroDaRampa = Ponto(pontosR[0].x - meiox, pontosR[0].y - meioy, pontosR[0].z - meioz)
+    print "Posicao real da rampa %s" %(centroDaRampa)
     return centroDaRampa
