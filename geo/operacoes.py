@@ -57,13 +57,13 @@ def achaBaseDaColuna(listaPontosAparentes, tamBase):
     distCentroBase = tamBase/2
     centroDaRampa = Ponto(listaPontosAparentes[0].x + meiox, listaPontosAparentes[0].y + meioy, 0)
     pontosDaBase = []
-    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y + distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y - distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y - distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y - distCentroBase, 0))
     return pontosDaBase
 
-def achaAlturaAparenteDaColuna(pontosF, listaBase):
+def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
     listaTopo = []
     i = 0
     midH = [ (pontosF[0] + pontosF[1]) * 0.5, (pontosF[2] + pontosF[3]) * 0.5 ]
