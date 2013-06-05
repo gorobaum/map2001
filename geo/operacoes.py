@@ -57,19 +57,28 @@ def achaBaseDaColuna(listaPontosAparentes, tamBase):
     distCentroBase = tamBase/2
     centroDaRampa = Ponto(listaPontosAparentes[0].x + meiox, listaPontosAparentes[0].y + meioy, 0)
     pontosDaBase = []
-    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y - distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y + distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y + distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y - distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y - distCentroBase, 0))
     return pontosDaBase
 
-def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
+def achaAlturaAparenteDaColuna(pontosF, listaBase):
     listaTopo = []
     i = 0
+    midH = [ (pontosF[0] + pontosF[1]) * 0.5, (pontosF[2] + pontosF[3]) * 0.5 ]
+    midV = [ (pontosF[1] + pontosF[2]) * 0.5, (pontosF[3] + pontosF[0]) * 0.5 ]
     for p in listaBase:
-        alturaTopo = listaPontosAparentes[i%2].linearInterpolationXZ(listaPontosAparentes[i%2+2], p.x)
-        listaTopo.append(Ponto(p.x, p.y, alturaTopo))
-        i += 1
+        difX = midH[0].x - midH[1].x
+        difZ = midH[0].z - midH[1].z
+        dif1 = midH[0].x - p.x
+        if midH[0].y == p.y:
+            dif2 = difZ * dif1 / float(difX)
+            listaTopo.append(Ponto(p.x, p.y, midH[0].z - dif2))
+        else:
+            listaTopo.append(Ponto(p.x, p.y, midV[0].z))
+
+
 
     return listaTopo
 
