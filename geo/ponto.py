@@ -18,3 +18,7 @@ class Ponto:
 
     def dist(self, p):
         return float(math.sqrt((self.x - p.x) ** 2 + (self.y - p.y) ** 2 + (self.z - p.z) ** 2))
+
+    def linearInterpolationXZ(self, p, x):
+        razao = (p.z - self.z ) / (p.x - self.x)
+        return (x - self.x)*razao + self.z

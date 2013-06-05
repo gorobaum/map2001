@@ -61,11 +61,10 @@ def achaBaseDaColuna(listaPontosAparentes, tamBase):
     return pontosDaBase
 
 def achaAlturaAparenteDaColuna(listaPontosAparentes, listaBase):
-    razao = (listaPontosAparentes[3].z - listaPontosAparentes[0].z) / (listaPontosAparentes[3].x - listaPontosAparentes[0].x)
     listaTopo = []
     i = 0
     for p in listaBase:
-        alturaTopo = (p.x - listaPontosAparentes[0].x)*razao + listaPontosAparentes[0].z
+        alturaTopo = listaPontosAparentes[i%2].linearInterpolationXZ(listaPontosAparentes[i%2+2], p.x)
         listaTopo.append(Ponto(p.x, p.y, alturaTopo))
         i += 1
 
