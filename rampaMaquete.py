@@ -10,42 +10,43 @@ ycomum = 10
 rLarg = 5
 
 comprimento = 10
+cp = comprimento
 difAlt = 5
 tamBaseColuna = 4
 
 rampas = []
-rampas.append(Rampa(Ponto(-2 * comprimento, ycomum, 30), Ponto(- comprimento, ycomum, 25), rLarg))
-rampas.append(Rampa(Ponto(- comprimento, ycomum, 23),    Ponto(0, ycomum, 20), rLarg))
-rampas.append(Rampa(Ponto(0, ycomum, 18),                Ponto(comprimento, ycomum, 23), rLarg))
-rampas.append(Rampa(Ponto(comprimento, ycomum, 21),       Ponto(2 * comprimento, ycomum, 17), rLarg))
-
-alturas = []
-alturas.append( [30, 30, 26, 26] )
-alturas.append( [25, 25, 25, 25] )
-alturas.append( [24, 24, 22, 22] )
-alturas.append( [21, 21, 19, 19] )
+rampas.append(Rampa(Ponto(-2 * cp, ycomum, 30), Ponto(-2 * cp, ycomum+rLarg, 30), Ponto(- cp, ycomum+rLarg, 26), Ponto(-cp, ycomum, 26), 30, 28))
+rampas.append(Rampa(rampas[-1], cp, -3, 0))
+rampas.append(Rampa(rampas[-1], cp, 3, -3))
+rampas.append(Rampa(rampas[-1], cp, -3, -6))
 
 
-i = 0
 print "Posicao do observador: %s" % Observador.posicao
 print ""
+j = 1
 for r in rampas:
-    print "Proxima Rampa..."
-    print "\tPontos Apar: %s" % (r.pontosAparencia)
-    r.setPontosReal(Operacoes.entortaRampaPorZ(r.pontosAparencia, alturas[i]))
-    print "\tPontos Real: %s" % (r.pontosReal)
-    i += 1
+    print "######################"
+    print "#  Rampa numero %s ..." % j 
+    print "######################"
+    print "listPoint%s = []" % j
+    for i in range(4):
+        print "listPoint%s.append([%s, %s, %s])" % (j, r.pontosR[-i].x, r.pontosR[-i].y, r.pontosR[-i].z)
+    for i in range(4):
+        print "listPoint%s.append([%s, %s, %s])" % (j, r.pontosR[-i].x, r.pontosR[-i].y, r.pontosR[-i].z+0.01)
+    print "box = rs.AddBox(listPoint%s)" % (j)
+    j += 1
     print ""
     
 basesColunas = []
+rhinoColunas = []
 i = 0
 print "Agora calculando a posicao das bases das Colunas..."
 print ""
 for r in rampas:
     print "Proxima Coluna..."
-    basesColunas.append(Operacoes.achaBaseDaColuna(r.pontosAparencia, tamBaseColuna))
-    print "\tPontos da Base: %s" % (basesColunas[i])
-    i += 1
+    b_aux = Operacoes.achaBaseDaColuna(r.pontosF, tamBaseColuna)
+    basesColunas.append(b_aux)
+    print "\tPontos da Base: %s" % (b_aux)
     print ""
 
 topoAparenteColunas = []
@@ -54,7 +55,7 @@ print "Agora calculando a posicao do topo real das Colunas..."
 print ""
 for r in rampas:
 	print "Proxima Coluna..."	
-	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosAparencia, basesColunas[i]))
+	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosF, basesColunas[i]))
 	print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
 	i += 1
 	print ""

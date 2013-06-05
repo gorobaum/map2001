@@ -13,32 +13,35 @@ def descobreNovoPonto(base, alturaReal, alturaFicticia):
     novoPonto = p + novoV
     return novoPonto
 
+def novoPontoPorX(ponto, x):
+    v = Vetor(Observador.posicao, ponto)
+    razao = float(x - ponto.x) / v.x
+    novoV = v * razao
+    novoPonto = ponto + novoV
+    return novoPonto
+
+def novoPontoPorY(ponto, y):
+    v = Vetor(Observador.posicao, ponto)
+    razao = float(y - ponto.y) / v.y
+    novoV = v * razao
+    novoPonto = ponto + novoV
+    return novoPonto
+
+def novoPontoPorZ(ponto, z):
+    v = Vetor(Observador.posicao, ponto)
+    razao = float(z - ponto.z) / v.z
+    novoV = v * razao
+    novoPonto = ponto + novoV
+    return novoPonto
+
 def entortaRampaPorZ(listaPontosAparentes, listaAlturasReais):
     i = 0
     retL = []
     for p in listaPontosAparentes:
-        v = Vetor(Observador.posicao, p)
-        alt = listaAlturasReais[i]
+        novoPonto = novoPontoPorZ(p, listaAlturasReais[i])
         i += 1
-        razao = float(alt - p.z) / v.z
-        novoV = v * razao
-        novoPonto = p + novoV
         retL.append(novoPonto)
     return retL
-
-def entortaRampaPorY(listaPontosAparentes, listaYReais):
-    i = 0
-    retL = []
-    for p in listaPontosAparentes:
-        v = Vetor(Observador.posicao, p)
-        y = listaYReais[i]
-        i += 1
-        razao = float(y - p.y) / v.y
-        novoV = v * razao
-        novoPonto = p + novoV
-        retL.append(novoPonto)
-    return retL
-
 
 def anguloEntre(base, topo, p3):
     c = base.dist(topo)
