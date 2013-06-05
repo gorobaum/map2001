@@ -71,8 +71,7 @@ print "Calculando o topo real das Colunas..."
 print ""
 for r in rampas:
 	print "Proxima Coluna..."
-	rampaTopo = Rampa(topoAparenteColunas[i][0], topoAparenteColunas[i][3], tamBaseColuna)
-	rampasTopoColuna.append(Operacoes.arrumaColuna(rampaTopo.pontosF, 1))
+	rampasTopoColuna.append(Operacoes.arrumaColuna(r.pontosR))
 	print "\tPontos do Topo Real: %s" % (rampasTopoColuna[i])
 	i += 1
 	print ""
