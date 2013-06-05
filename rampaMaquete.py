@@ -20,6 +20,11 @@ rampas.append(Rampa(rampas[-1], cp, -3, 0))
 rampas.append(Rampa(rampas[-1], cp, 3, -3))
 rampas.append(Rampa(rampas[-1], cp, -3, -6))
 
+i = 0
+for r in rampas:
+    print "Posicao real da rampa %s = %s" %(i, rampas[i].pontosF)
+    print ""
+    i += 1
 
 print "Posicao do observador: %s" % Observador.posicao
 print ""
