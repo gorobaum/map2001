@@ -72,6 +72,25 @@ print ""
 for r in rampas:
     print "Proxima Coluna..."
     topoColunaReal = Operacoes.topoRealColuna(topoAparenteColunas[i], r)
+    rampasTopoColuna.append(topoColunaReal)
     print "\tPontos do Topo Real: %s" % (topoColunaReal)
     i += 1
     print ""
+
+for i in range(4):
+    print "##################"
+    print "# coluna %s" % i
+    print "##################"
+
+    basesColunas[i].reverse()
+    
+    rampasTopoColuna[i].reverse()
+    a = [] + basesColunas[i] + rampasTopoColuna[i]
+    basesColunas[i].reverse()
+    rampasTopoColuna[i].reverse()
+
+    print "colunaPoints%s = []" % i
+    for j in range(8):
+        print "colunaPoints%s.append([%s, %s, %s])" % (i, a[j].x, a[j].y, a[j].z)
+    print "box = rs.AddBox(colunaPoints%s)" % (i)
+    

@@ -18,7 +18,7 @@ class Ponto:
         return self.__mul__(val)
 
     def __repr__(self):
-        return "(" + ("%.2f" % self.x) + ", " + ("%.2f" % self.y) + ", " + ("%.2f" % self.z) + ")"
+        return "[" + ("%.2f" % self.x) + ", " + ("%.2f" % self.y) + ", " + ("%.2f" % self.z) + "]"
 
     def __str__(self):
         return self.__repr__()
