@@ -57,10 +57,10 @@ def achaBaseDaColuna(listaPontosAparentes, tamBase):
     distCentroBase = tamBase/2
     centroDaRampa = Ponto(listaPontosAparentes[0].x + meiox, listaPontosAparentes[0].y + meioy, 0)
     pontosDaBase = []
-    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y - distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y + distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y + distCentroBase, 0))
-    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y - distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x - distCentroBase, centroDaRampa.y, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y + distCentroBase, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x + distCentroBase, centroDaRampa.y, 0))
+    pontosDaBase.append(Ponto(centroDaRampa.x, centroDaRampa.y - distCentroBase, 0))
     return pontosDaBase
 
 def achaAlturaAparenteDaColuna(pontosF, listaBase):
@@ -82,7 +82,7 @@ def achaAlturaAparenteDaColuna(pontosF, listaBase):
 
     return listaTopo
 
-def arrumaColuna(pontosR):
+def pegaCentroRampa(pontosR):
     meiox = (pontosR[0].x - pontosR[2].x) / 2
     meioz = (pontosR[0].z - pontosR[2].z) / 2
     meioy = (pontosR[0].y - pontosR[2].y) / 2
@@ -90,3 +90,17 @@ def arrumaColuna(pontosR):
     centroDaRampa = Ponto(pontosR[0].x - meiox, pontosR[0].y - meioy, pontosR[0].z - meioz)
     print "Posicao real da rampa %s" %(centroDaRampa)
     return centroDaRampa
+
+def pegaReta(pontosR, centroDaRampaReal, centroDaRampaAparente):
+    meiox = (pontosR[0].x - pontosR[1].x) / 2
+    meioy = (pontosR[0].y - pontosR[1].y) / 2
+    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
+    meioDoLadoBaixo = Ponto(pontosR[0].x - meiox, pontosR[0].y - meioy, pontosR[0].z)
+    meiox = (pontosR[2].x - pontosR[3].x) / 2
+    meioy = (pontosR[2].y - pontosR[3].y) / 2
+    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
+    meioDoLadoCima = Ponto(pontosR[2].x - meiox, pontosR[2].y - meioy, pontosR[2].z)
+    vetorReta = Vetor(meioDoLadoBaixo, meioDoLadoCima)
+
+
+    return 

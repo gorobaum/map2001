@@ -71,8 +71,7 @@ print "Calculando o topo real das Colunas..."
 print ""
 for r in rampas:
 	print "Proxima Coluna..."
-	topoColunaReal = Operacoes.arrumaColuna(r.pontosR)
-    anguloEntre(base, topo, p3):
+	topoColunaReal = Operacoes.pegaCentroRampa(r.pontosR)
 	print "\tPontos do Topo Real: %s" % (topoColunaReal)
 	i += 1
 	print ""
