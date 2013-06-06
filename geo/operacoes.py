@@ -1,6 +1,7 @@
 from __future__ import division
 from geo.ponto import Ponto
 from geo.vetor import Vetor
+from geo.reta import Reta
 from config.observador import Observador
 import math
 
@@ -82,25 +83,23 @@ def achaAlturaAparenteDaColuna(pontosF, listaBase):
 
     return listaTopo
 
-def pegaCentroRampa(pontosR):
-    meiox = (pontosR[0].x - pontosR[2].x) / 2
-    meioz = (pontosR[0].z - pontosR[2].z) / 2
-    meioy = (pontosR[0].y - pontosR[2].y) / 2
-    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
-    centroDaRampa = Ponto(pontosR[0].x - meiox, pontosR[0].y - meioy, pontosR[0].z - meioz)
-    print "Posicao real da rampa %s" %(centroDaRampa)
-    return centroDaRampa
+def topoRealColuna(topoAparente, rampa):
+    esqd = (rampa.pontosR[0] + rampa.pontosR[1]) * 0.5
+    dirt = (rampa.pontosR[2] + rampa.pontosR[3]) * 0.5
+    cima = (rampa.pontosR[1] + rampa.pontosR[2]) * 0.5
+    baxo = (rampa.pontosR[3] + rampa.pontosR[0]) * 0.5
 
-def pegaReta(pontosR, centroDaRampaReal, centroDaRampaAparente):
-    meiox = (pontosR[0].x - pontosR[1].x) / 2
-    meioy = (pontosR[0].y - pontosR[1].y) / 2
-    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
-    meioDoLadoBaixo = Ponto(pontosR[0].x - meiox, pontosR[0].y - meioy, pontosR[0].z)
-    meiox = (pontosR[2].x - pontosR[3].x) / 2
-    meioy = (pontosR[2].y - pontosR[3].y) / 2
-    print "MEIOS = [%s, %s, %s]" % (meiox, meioy, meioz)
-    meioDoLadoCima = Ponto(pontosR[2].x - meiox, pontosR[2].y - meioy, pontosR[2].z)
-    vetorReta = Vetor(meioDoLadoBaixo, meioDoLadoCima)
+    retaH = Reta(esqd, dirt)
+    retaV = Reta(cima, baxo)
 
-
-    return 
+    pontosRetorno = []
+    for i in range(4):
+        pTopo = topoAparente[i]
+        retaO = Reta(Observador.posicao, pTopo)
+        p = Ponto(0, 0, 0)
+        if i % 2 == 0:
+            p = retaO.intersect(retaH)
+        else:
+            p = retaO.intersect(retaV)
+        pontosRetorno.append(p)
+    return pontosRetorno

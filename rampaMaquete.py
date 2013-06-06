@@ -59,19 +59,19 @@ i = 0
 print "Agora calculando a posicao do topo real das Colunas..."
 print ""
 for r in rampas:
-	print "Proxima Coluna..."	
-	topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosF, basesColunas[i]))
-	print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
-	i += 1
-	print ""
+    print "Proxima Coluna..."    
+    topoAparenteColunas.append(Operacoes.achaAlturaAparenteDaColuna(r.pontosF, basesColunas[i]))
+    print "\tPontos do Topo: %s" % (topoAparenteColunas[i])
+    i += 1
+    print ""
 
 rampasTopoColuna = []
 i = 0
 print "Calculando o topo real das Colunas..."
 print ""
 for r in rampas:
-	print "Proxima Coluna..."
-	topoColunaReal = Operacoes.pegaCentroRampa(r.pontosR)
-	print "\tPontos do Topo Real: %s" % (topoColunaReal)
-	i += 1
-	print ""
+    print "Proxima Coluna..."
+    topoColunaReal = Operacoes.topoRealColuna(topoAparenteColunas[i], r)
+    print "\tPontos do Topo Real: %s" % (topoColunaReal)
+    i += 1
+    print ""
