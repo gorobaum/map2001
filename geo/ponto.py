@@ -1,4 +1,5 @@
 import math
+import config.config as Config
 
 class Ponto:
     def __init__(self, x, y, z):
@@ -16,6 +17,21 @@ class Ponto:
     def __div__(self, scalar):
         val = 1.0 / scalar
         return self.__mul__(val)
+
+    def __cmp__(self, p):
+        difx = self.x - p.x
+        if difx > Config.epsilon:
+            print "returning x", difx
+            return difx
+        dify = self.y - p.y
+        if dify > Config.epsilon:
+            print "returning y", dify
+            return dify
+        difz = self.z - p.z
+        if difz > Config.epsilon:
+            print "returning z", difz
+            return difz
+        return 0
 
     def __repr__(self):
         return "[" + ("%.2f" % self.x) + ", " + ("%.2f" % self.y) + ", " + ("%.2f" % self.z) + "]"

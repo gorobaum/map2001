@@ -4,6 +4,7 @@ from geo.vetor import Vetor
 from geo.reta import Reta
 from config.observador import Observador
 import math
+import config.config as Config
 
 def descobreNovoPonto(base, alturaReal, alturaFicticia):
     p = Ponto(base.x, base.y, alturaFicticia)
@@ -104,8 +105,9 @@ def topoRealColuna(topoAparente, rampa):
     cima = reta_fc.intersect(lado_c)
     baxo = reta_fb.intersect(lado_b)
 
-    print "esq, dir, cima, baixo"
-    print esqd, dirt, cima, baxo
+    if Config.debug:
+        print "esq, dir, cima, baixo"
+        print esqd, dirt, cima, baxo
 
     
     retaH = Reta(esqd, dirt)
