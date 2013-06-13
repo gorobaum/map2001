@@ -77,9 +77,9 @@ class Plano:
         
         g = j * vr_estrela - j * vr_interrog * vp1o_estrela - vr + vp1o * vr_interrog
         
-        acabate = None
+        abacate = None
         for coord in ['x', 'y', 'z']:
-            if g.get(coord) != 0:
+            if g.get(coord) >= Config.epsilon:
                 abacate = coord
                 break
 
