@@ -87,8 +87,8 @@ class Plano:
             print "g:", g
             print "abacate:", abacate
 
-        aux1 = (pr - pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela) + vp1o * pp_interrog
-        aux2 = (pr - pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela)
+        aux1 = (pr - pp - vp1o * pr_interrog - j * pr_estrela + j * pp_estrela - j * pr_interrog * vp1o_estrela) + vp1o * pp_interrog
+        aux2 = (pr - pp - vp1o * pr_interrog - j * pr_estrela + j * pp_estrela - j * pr_interrog * vp1o_estrela)
         print aux1, aux2
         alpha3 = aux1.get(abacate) / g.get(abacate)
         
