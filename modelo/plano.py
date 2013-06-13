@@ -4,7 +4,10 @@ from geo.vetor import Vetor
 import config.config as Config
 
 def determinante(v1, v2, v3):
-    return v1.x * v2.y * v3.z + v1.y * v2.z * v3.x + v1.z * v2.x * v3.y - v1.z * v2.y * v3.x - v1.x * v2.z * v3.y - v1.y * v2.x * v1.y
+    d = v1.x * v2.y * v3.z + v1.y * v2.z * v3.x + v1.z * v2.x * v3.y - v1.z * v2.y * v3.x - v1.x * v2.z * v3.y - v1.y * v2.x * v3.z
+    if Config.debug:
+        print d
+    return d
 
 
 class Plano:
@@ -34,6 +37,7 @@ class Plano:
                 interrog = coord
                 break
         if Config.debug:
+            print "vp1:", vp1
             print "interrog:", interrog
         vp1o = vp1 / vp1.get(interrog)
 
@@ -50,6 +54,7 @@ class Plano:
                 break
 
         if Config.debug:
+            print "z:", z
             print "estrela:", estrela
 
         j = z / z.get(estrela)        
@@ -67,6 +72,7 @@ class Plano:
                 break
 
         if Config.debug:
+            print "g:", g
             print "abacate:", abacate
 
         aux1 = (pr + pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela)
