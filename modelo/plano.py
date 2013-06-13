@@ -6,7 +6,7 @@ import config.config as Config
 def determinante(v1, v2, v3):
     d = v1.x * v2.y * v3.z + v1.y * v2.z * v3.x + v1.z * v2.x * v3.y - v1.z * v2.y * v3.x - v1.x * v2.z * v3.y - v1.y * v2.x * v3.z
     if Config.debug:
-        print d
+        print "determinante",  d
     return d
 
 
@@ -19,7 +19,14 @@ class Plano:
     def intersectReta(self, r):
         if Config.debug:
             print "intersect plano e reta"
-            print self.v1, self.v2, r.v
+            print " plano"
+            print "  pp: ", self.p
+            print "  vp1:", self.v1
+            print "  vp2:", self.v2
+            print " reta"
+            print "  pr: ", r.p
+            print "  vr: ", r.v
+
 
         if determinante(self.v1, self.v2, r.v) == 0:
             raise BasicException("plano e reta sao paralelos")
@@ -40,9 +47,12 @@ class Plano:
             print "vp1:", vp1
             print "interrog:", interrog
         vp1o = vp1 / vp1.get(interrog)
+        if Config.debug:
+            print "vp1o:", vp1o
 
         vr_interrog = vr.get(interrog)
         pr_interrog = pr.get(interrog)
+        pp_interrog = pp.get(interrog)
 
         z = vp2 - vp1o * vp2.get(interrog)
         # z eh diferente de zero em uma coordenada pelo menos pq os vetores
@@ -58,6 +68,8 @@ class Plano:
             print "estrela:", estrela
 
         j = z / z.get(estrela)        
+        if Config.debug:
+            print "j:", j
         vr_estrela = vr.get(estrela)
         pr_estrela = pr.get(estrela)
         pp_estrela = pp.get(estrela)
@@ -75,7 +87,9 @@ class Plano:
             print "g:", g
             print "abacate:", abacate
 
-        aux1 = (pr + pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela)
+        aux1 = (pr - pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela) + vp1o * pp_interrog
+        aux2 = (pr - pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela)
+        print aux1, aux2
         alpha3 = aux1.get(abacate) / g.get(abacate)
         
         if Config.debug:
