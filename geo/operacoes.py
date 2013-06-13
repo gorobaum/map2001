@@ -84,30 +84,12 @@ def achaAlturaAparenteDaColuna(pontosF, listaBase):
 
     return listaTopo
 
+def determinante(v1, v2, v3):
+    return v1.x * v2.y * v3.z + v1.y * v2.z * v3.x + v1.z * v2.x * v3.y - v1.z * v2.y * v3.x - v1.x * v2.z * v3.y - v1.y * v2.x * v1.y
+
 def topoRealColuna(topoAparente, rampa):
-    f_esqd = (rampa.pontosF[0] + rampa.pontosF[1]) * 0.5
-    f_dirt = (rampa.pontosF[2] + rampa.pontosF[3]) * 0.5
-    f_cima = (rampa.pontosF[1] + rampa.pontosF[2]) * 0.5
-    f_baxo = (rampa.pontosF[3] + rampa.pontosF[0]) * 0.5
-
-    reta_fe = Reta(Observador.posicao, f_esqd)
-    reta_fd = Reta(Observador.posicao, f_dirt)
-    reta_fc = Reta(Observador.posicao, f_cima)
-    reta_fb = Reta(Observador.posicao, f_baxo)
-
-    lado_e = Reta(rampa.pontosR[0], rampa.pontosR[1])
-    lado_d = Reta(rampa.pontosR[2], rampa.pontosR[3])
-    lado_c = Reta(rampa.pontosR[1], rampa.pontosR[2])
-    lado_b = Reta(rampa.pontosR[3], rampa.pontosR[0])
-
-    esqd = reta_fe.intersect(lado_e)
-    dirt = reta_fd.intersect(lado_d)
-    cima = reta_fc.intersect(lado_c)
-    baxo = reta_fb.intersect(lado_b)
-
     if Config.debug:
-        print "esq, dir, cima, baixo"
-        print esqd, dirt, cima, baxo
+        print "Comecando topoRealColuna"
 
     
     retaH = Reta(esqd, dirt)

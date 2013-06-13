@@ -8,15 +8,15 @@ import config.size as Tamanho
 from config.observador import Observador
 import math
 
-p1 = Ponto(1, 1, 1)
-p2 = Ponto(3, 1, 1)
-p3 = Ponto(1, 3, 1)
+p1 = Ponto(0, 0, 0)
+p2 = Ponto(0, 1, 0)
+p3 = Ponto(0, 0, 1)
 
 plano = Plano(p1, p2, p3)
 
-pr1 = Ponto(2, 2, 2)
-pr2 = Ponto(2, 2, -2)
+pr1 = Ponto(-2, 1, 1)
+pr2 = Ponto(-1, 1, 1)
 
 r = Reta(pr1, pr2)
 
-print "", plano.intersecReta(r)
+print "", plano.intersectReta(r)

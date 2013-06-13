@@ -49,3 +49,12 @@ class Ponto:
     def linearInterpolationYZ(self, p, x):
         razao = (x - self.x) / (p.x - self.x)
         return (p.y - self.y)*razao + self.y 
+
+    def get(self, xyz):
+        if xyz == "x":
+            return self.x
+        if xyz == "y":
+            return self.y
+        if xyz == "z":
+            return self.z
+        return None
