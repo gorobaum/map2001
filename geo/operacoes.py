@@ -2,6 +2,7 @@ from __future__ import division
 from geo.ponto import Ponto
 from geo.vetor import Vetor
 from geo.reta import Reta
+from modelo.plano import Plano
 from config.observador import Observador
 import math
 import config.config as Config
@@ -91,18 +92,11 @@ def topoRealColuna(topoAparente, rampa):
     if Config.debug:
         print "Comecando topoRealColuna"
 
-    
-    retaH = Reta(esqd, dirt)
-    retaV = Reta(cima, baxo)
-
     pontosRetorno = []
     for i in range(4):
         pTopo = topoAparente[i]
+        plano = Plano(rampa.pontosR[1], rampa.pontosR[0], rampa.pontosR[2])
         retaO = Reta(Observador.posicao, pTopo)
-        p = Ponto(0, 0, 0)
-        if i % 2 == 0:
-            p = retaO.intersect(retaH)
-        else:
-            p = retaO.intersect(retaV)
+        p = plano.intersectReta(retaO)
         pontosRetorno.append(p)
     return pontosRetorno

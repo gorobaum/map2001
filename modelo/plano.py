@@ -2,7 +2,10 @@ import math
 from geo.ponto import Ponto
 from geo.vetor import Vetor
 import config.config as Config
-import geo.operacoes as Operacoes
+
+def determinante(v1, v2, v3):
+    return v1.x * v2.y * v3.z + v1.y * v2.z * v3.x + v1.z * v2.x * v3.y - v1.z * v2.y * v3.x - v1.x * v2.z * v3.y - v1.y * v2.x * v1.y
+
 
 class Plano:
     def __init__(self, p1, p2, p3):
@@ -15,7 +18,7 @@ class Plano:
             print "intersect plano e reta"
             print self.v1, self.v2, r.v
 
-        if Operacoes.determinante(self.v1, self.v2, r.v) == 0:
+        if determinante(self.v1, self.v2, r.v) == 0:
             raise BasicException("plano e reta sao paralelos")
         
         vp1 = self.v1
@@ -30,6 +33,8 @@ class Plano:
             if vp1.get(coord) != 0:
                 interrog = coord
                 break
+        if Config.debug:
+            print "interrog:", interrog
         vp1o = vp1 / vp1.get(interrog)
 
         vr_interrog = vr.get(interrog)
@@ -43,6 +48,10 @@ class Plano:
             if z.get(coord) != 0:
                 estrela = coord
                 break
+
+        if Config.debug:
+            print "estrela:", estrela
+
         j = z / z.get(estrela)        
         vr_estrela = vr.get(estrela)
         pr_estrela = pr.get(estrela)
@@ -57,10 +66,23 @@ class Plano:
                 abacate = coord
                 break
 
+        if Config.debug:
+            print "abacate:", abacate
+
         aux1 = (pr + pp - vp1o * pr_interrog - j * pr_estrela - j * pp_estrela - j * pr_interrog * vp1o_estrela)
         alpha3 = aux1.get(abacate) / g.get(abacate)
+        
+        if Config.debug:
+            print "alpha3:", alpha3
+            print "r:", r.p, "+ alpha3 .", r.v
+            
 
         novop = r.p + r.v * alpha3
+
+        if Config.debug:
+            print "novop:", novop
+            print ""
+
         return novop
 
 
