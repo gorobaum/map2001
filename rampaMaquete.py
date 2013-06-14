@@ -13,7 +13,7 @@ import config.config as Config
 ycomum = 10
 rLarg = 5
 
-comprimento = 10
+comprimento = 13
 cp = comprimento
 difAlt = 5
 tamBaseColuna = 4
@@ -26,10 +26,10 @@ if len(sys.argv) > 1:
 debug = Config.debug
 
 rampas = []
-rampas.append(Rampa(Ponto(-2 * cp, ycomum, 30), Ponto(-2 * cp, ycomum+rLarg, 30), Ponto(- cp, ycomum+rLarg, 26), Ponto(-cp, ycomum, 26), 30, 28))
-rampas.append(Rampa(rampas[-1], cp, -3, 0))
-rampas.append(Rampa(rampas[-1], cp, 3, -3))
-rampas.append(Rampa(rampas[-1], cp, -3, -6))
+rampas.append(Rampa(Ponto(-2 * cp, ycomum, 26), Ponto(-2 * cp, ycomum+rLarg, 26), Ponto(- cp, ycomum+rLarg, 22), Ponto(-cp, ycomum, 22), 26, 24))
+rampas.append(Rampa(rampas[-1], cp, 2, -4))
+rampas.append(Rampa(rampas[-1], cp, 4, -4))
+rampas.append(Rampa(rampas[-1], cp, -4, 0))
 
 i = 0
 for r in rampas:
@@ -42,6 +42,8 @@ if debug:
     print "Posicao do observador: %s" % Observador.posicao
     print ""
 j = 1
+print "import rhinoscriptsyntax as rs"
+print ""
 for r in rampas:
     print "######################"
     print "#  Rampa numero %s ..." % j 
